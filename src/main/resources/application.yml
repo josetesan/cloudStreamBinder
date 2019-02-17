@@ -1,0 +1,29 @@
+spring:
+    cloud:
+        stream:
+            bindings:
+                input:
+                    destination: rawMessagesTopic
+                    binder: kafka
+                output:
+                    destination: myRabbitQueue
+                    binder: rabbit
+            binders:
+                rabbit:
+                    type: rabbit
+                    environment:
+                        spring:
+                            rabbitmq:
+                                host: 192.168.1.36
+                                port: 5672
+                                username: guest
+                                password: guest
+                                virtual-host: /
+                kafka:
+                    type: kafka
+                    environment:
+                        spring:
+                            kafka:
+                                producer:
+                                    bootstrap-servers: localhost
+
